@@ -28,7 +28,8 @@ const ContactForm = () => {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const response = await axios.post(`${apiUrl}/api/send-email`, data);
+      // const response = await axios.post(`http://localhost:5000/api/send-email`, data);
+      const response = await axios.post(`https://portfolio-backend-red.vercel.app/api/send-email`, data);
       setSuccessMessage(response.data.message || "Message sent successfully!");
       setTimeout(() => {
         setSuccessMessage("");
@@ -81,18 +82,7 @@ const ContactForm = () => {
         <div className="rounded-lg shadow-lg">
           <div>
             <h1 className="text-2xl text-purple-400">Contact Us</h1>
-            {errorMessage && (
-              <p className="errorMessage flex items-center">
-                <AiOutlineCloseCircle style={{ color: "red", marginLeft: "5px" }} />
-                {errorMessage}
-              </p>
-            )}
-            {successMessage && (
-              <p className="successMessage flex items-center">
-                <AiOutlineCheckCircle style={{ color: "green", marginLeft: "5px" }} />
-                {successMessage}
-              </p>
-            )}
+            
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="formInput">
                 <label>Name</label>
@@ -200,7 +190,20 @@ const ContactForm = () => {
                     Send <FiSend className="m-2" color="white" size="25px" />
                   </>
                 )}
-              </button>
+              </button> 
+              <br/>
+              {errorMessage && (
+              <p className="errorMessage flex items-center justify-between gap-2 pr-4">
+                <AiOutlineCloseCircle style={{ color: "red", marginLeft: "5px",}} />
+                {errorMessage}
+              </p>
+            )}
+            {successMessage && (
+              <p className="successMessage flex items-center">
+                <AiOutlineCheckCircle style={{ color: "green", marginLeft: "5px",}} />
+                {successMessage}
+              </p>
+            )}
             </form>
           </div>
         </div>

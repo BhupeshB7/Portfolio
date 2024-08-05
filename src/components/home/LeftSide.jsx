@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 const LeftSide = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: true });
-
+  const [cv,setCV] = React.useState(false);
   React.useEffect(() => {
     if (inView) {
       controls.start("visible");
@@ -22,7 +22,12 @@ const LeftSide = () => {
     hidden: { opacity: 0, x: -20 },
     visible: { opacity: 1, x: 0 },
   };
-
+const downloadCv = () => {
+  setCV(true)
+  setTimeout(() => {
+    setCV(false)
+  }, 5000)
+};
   return (
     <section ref={ref} className="flex flex-col items-center">
       <motion.h5
@@ -61,9 +66,8 @@ const LeftSide = () => {
           options={{
             strings: [
               "Fullstack developer",
-              "React developer",
               "MERN developer",
-              "React Native developer",
+              "Javascript developer",
             ],
             autoStart: true,
             loop: true,
@@ -72,9 +76,10 @@ const LeftSide = () => {
           }}
         />
       </motion.h1>
-      <button className="download-cv-button mt-4 rounded-xl">
+      <button className="download-cv-button mt-4 rounded-xl " onClick={downloadCv}>
         Download CV
       </button>
+      {cv && <div className="mt-3 bg-red-600 text-red-200 p-4 m-auto d-flex items-center justify-center rounded-md">Try after some time</div>}
     </section>
   );
 };

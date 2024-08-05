@@ -383,3 +383,21 @@ select option {
 .project-image:hover {
   transform: scale(1.1);
 }
+.errorMessage{
+  color: rgb(210, 27, 27);
+  background: #ffdada;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+.successMessage{
+  color: rgb(14, 61, 14);
+  background: #eaffdd;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}

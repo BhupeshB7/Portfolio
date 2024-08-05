@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import logo from "../assets/B.png";
 const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -17,14 +16,17 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+  const handleClick = () => {
+    window.open("https://github.com/BhupeshB7", "_blank");
+  };
+  
   return (
     <motion.header className={`header ${isSticky ? "sticky" : ""}`}>
       <div className={`header-content ${isSticky ? "sticky" : ""}`}>
-      <nav className="flex justify-between items-center p-4">
-        <img src={logo} alt="logo" className="w-16 h-14 pl-4" />
-        <FaGithub className="header-icon" />
-      </nav>
+        <nav className="flex justify-between items-center p-4">
+          <img src={logo} alt="logo" className="w-16 h-14 pl-4" />
+          <FaGithub onClick={handleClick} className="header-icon" />
+        </nav>
       </div>
     </motion.header>
   );
