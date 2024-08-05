@@ -1,0 +1,385 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Schibsted Grotesk", sans-serif;
+  font-family: "JetBrains Mono",monospace;
+}
+:root {
+  --primary-color: #020c17;
+  --purple-color: #6f42c1;
+  --purple-color: #60498b;
+  --lightPurple-color: #f76be9;
+  --info-color: #17a2b8;
+  --light-color: #f8f9fa;
+  --white-color: #fff;
+  --transparent-color: transparent;
+  --font-family: "Poppins", sans-serif;
+}
+body{
+  background-color: var(--primary-color);
+}
+/* scroll bar */
+::-webkit-scrollbar {
+  width: 0px;
+}
+/* Header css */
+.header {
+  /* position: relative; */
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  background: var(--primary-color) !important;
+}
+
+.header.sticky {
+  position: fixed;
+  background: transparent !important;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  transition: backdrop-filter 0.3s ease;
+}
+
+.header.sticky .header-content {
+  backdrop-filter: blur(10px);
+}
+.header-icon {
+  font-size: 1.5rem;
+  color: var(--light-color);
+  margin-right: 1rem !important;
+}
+/* Header css end */
+/* Home css */
+.home-right-side{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  max-width: 520px;
+  max-height: 520px;
+  margin: 20px;
+  box-shadow: 
+    rgba(0, 0, 0, 0.25) 0px 54px 55px, 
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, 
+    rgba(0, 0, 0, 0.12) 0px 4px 6px, 
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, 
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+/* media query for 560px to 768px */
+@media (min-width: 565px) and (max-width: 915px) {
+  .home-right-side{
+    width: 300px;
+    height: 300px;
+    max-width: 400px;
+    max-height: 400px;
+  }
+}
+@media (min-width: 281px) and (max-width: 561px) {
+  .home-right-side{
+    width: 320px;
+    height: 320px;
+    max-width: 400px;
+    max-height: 400px;
+    margin: 10px;
+  }
+}
+.typewriter-text {
+  display: inline-block;
+  transform: translateX(-50%);
+  position: relative;
+  left: 50%;
+}
+.download-cv-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background: transparent;
+  color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid transparent;
+  border-radius: 1.375rem !important; /* Apply border-radius */
+  background-image: linear-gradient(var(--primary-color), var(--primary-color)), linear-gradient(to right, #3b82f6, #a855f7, #ec4899);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: gradientBorder 3s ease infinite;
+}
+@keyframes gradientBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.download-cv-button:hover {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+.work-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background: transparent;
+  color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(to right, #3b82f6, #a855f7, #ec4899);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-clip: border-box; /* Ensures the gradient is visible */
+  animation: rotateBorder 3s linear infinite; /* Apply the rotation animation */
+}
+
+@keyframes rotateBorder {
+  0% {
+    border-image-source: linear-gradient(to right, #3b82f6, #a855f7, #ec4899);
+  }
+  50% {
+    border-image-source: linear-gradient(to left, #3b82f6, #a855f7, #ec4899);
+  }
+  75% {
+    border-image-source: linear-gradient(to right, #3b82f6, #a855f7, #ec4899);
+  }
+  100% {
+    border-image-source: linear-gradient(to left, #3b82f6, #a855f7, #ec4899);
+  }
+}
+.progress-bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 10px;
+  background-color: #4caf50;
+  width: 0;
+  transition: width 0.3s;
+}
+
+
+/* contact css */
+.formInput{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.formInput label{
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: var(--purple-color);
+}
+
+.formInput input,
+.formInput textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--purple-color);
+  background-color: transparent; 
+  color: var(--lightPurple-color);
+  box-sizing: border-box;
+  outline: none;
+}
+
+.formInput input:-webkit-autofill,
+.formInput input:-webkit-autofill:focus,
+.formInput textarea:-webkit-autofill,
+.formInput textarea:-webkit-autofill:focus {
+  background-color: transparent !important; 
+  color: var(--lightPurple-color) !important;
+  border: 1px solid var(--purple-color) !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--primary-color) inset !important; 
+  -webkit-text-fill-color: var(--lightPurple-color) !important; 
+}
+
+.formInput input::placeholder,
+.formInput textarea::placeholder {
+  color: #3b3b3b;
+}
+
+select {
+  color: black;
+  border: 1.3px solid black;
+  padding: 10px;
+  background-color: white;
+  font-size: 16px;
+}
+
+select option {
+  color: var(--purple-color);
+  background-color: var(--primary-color);
+  padding: 10px;
+}
+
+.custom-select {
+  color: var(--lightPurple-color);
+  background-color: transparent; 
+  border: 1px solid var(--purple-color);
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-options {
+  position: absolute;
+  width: 100%;
+  border: 1px solid var(--lightPurple-color); 
+  background-color: var(--primary-color);
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1;
+  margin: 10px auto;
+  color: var(--purple-color);
+}
+
+.custom-option {
+  padding: 10px;
+  color: var(--purple-color);
+  cursor: pointer;
+}
+/*  */
+.contact-bg {
+  background-size: contain !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+/* About css code */
+
+.about-icon{
+  position: absolute;
+  top: 20px;
+  right: 5%;
+}
+.close_icon{
+  font-size: 36px;
+  color: #80DEEA;
+}
+.about-text{
+  color: #dfb8fd;
+  font-family: "JetBrains Mono",monospace;
+  /* font-family: Georgia, "Times New Roman", Times, serif; */
+  /* font-family: "Agbalumo", system-ui; */
+  font-size: 17px;
+  font-weight: 500;
+
+  padding: 10px;
+}
+.container2{
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  margin: auto;
+}
+.left-col2 span{
+  font-family: "JetBrains Mono",monospace !important;
+}
+@media (min-width: 768px) {
+  .about-text {
+    font-size: 19px;
+    padding:34px;
+    /* margin: 40px;/ */
+  }
+  .left-col2, .right-col2 {
+    flex: 1;
+}
+.left-col2{
+  padding: 50px;
+}
+.right-col2{
+  padding: 30px;
+}
+  .container2 {
+    flex-direction: row;
+}
+  .container-big{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    max-width: 800px;
+    flex-direction: column;
+  }
+.circle-parent{
+  position: absolute;
+  top: 145px;
+  right: 135px;
+  width: 200px;
+  height: 200px;
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+  z-index: -1;
+  opacity: 0.1;
+  border-radius: 50%;
+}
+.circle-child{
+  position: absolute;
+  top: 145px;
+  right: 135px;
+  width: 100px;
+  height: 100px;
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+  z-index: -1;
+  opacity: 1;
+  border-radius: 50%;
+}
+}
+.about-mern{
+  color: #80DEEA;
+  font-size: 28px;
+  font-weight: 700;
+  padding: 10px;
+  text-align: center;
+  font-family: "Schibsted Grotesk", sans-serif;
+}
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 60px;
+  background-color: white;
+  color: #000000;
+  text-align: center; 
+  border-radius: 8px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the icon */
+  left: 50%;
+  margin-left: -60px; /* Center the tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip text visible on hover */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+.project-image {
+  transition: transform 0.3s ease-in-out;
+  box-shadow: rgba(87, 46, 84, 0.56) 0px 22px 70px 4px;
+}
+.project-image:hover {
+  transform: scale(1.1);
+}
