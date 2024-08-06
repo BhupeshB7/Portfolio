@@ -1,67 +1,43 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Typewriter from "typewriter-effect";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 const LeftSide = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false });
   const controls = useAnimation();
-  const [ref, inView] = useInView({ triggerOnce: true });
-  const [cv,setCV] = React.useState(false);
-  React.useEffect(() => {
-    if (inView) {
-      controls.start("visible");
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start({ opacity: 1, y: 0, scale: 1 });
+    } else {
+      controls.start({ opacity: 0, y: 75, scale: 1.4 });
     }
-  }, [controls, inView]);
+  }, [isInView, controls]);
+  const downloadCv = () => {
+    window.open("https://drive.google.com/file/d/1-g_5jP8B4E8Q0tL9k-RjyDmtjBkFors1/view?usp=drive_link", "_blank");
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
   };
 
-  const textVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0 },
-  };
-const downloadCv = () => {
-  setCV(true)
-  setTimeout(() => {
-    setCV(false)
-  }, 5000)
-};
   return (
     <section ref={ref} className="flex flex-col items-center">
       <motion.h5
-        initial="hidden"
+        initial={{ opacity: 0, y: 75, scale: 1.4 }}
         animate={controls}
-        variants={containerVariants}
-        transition={{ ease: "easeOut", duration: 0.6, delay: 0.2 }}
+        transition={{
+          duration: 0.5,
+          ease: "easeInOut",
+          times: [0, 0.2, 0.5, 0.8, 1],
+        }}
       >
-        <motion.div
-          className="text-white text-xl ml-3"
-          initial="hidden"
-          animate={controls}
-          variants={containerVariants}
-          transition={{ ease: "easeOut", duration: 0.6, delay: 0.3 }}
-        >
+        <motion.div className="text-white text-xl ml-3">
           <span className="text-5xl p-2">👋</span> I'm
         </motion.div>
-        <motion.p
-          className="text-3xl lg:text-5xl xl:text-6xl 2xl:text-7xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-          initial="hidden"
-          animate={controls}
-          variants={textVariants}
-          transition={{ ease: "easeOut", duration: 0.6, delay: 0.4 }}
-        >
+        <motion.p className="text-3xl lg:text-5xl xl:text-6xl 2xl:text-7xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
           Bhupesh Kumar
         </motion.p>
       </motion.h5>
-      <motion.h1
-        className="relative text-white text-xl mt-4"
-        initial="hidden"
-        animate={controls}
-        variants={textVariants}
-        transition={{ ease: "easeOut", duration: 0.6, delay: 0.5 }}
-      >
+      <motion.h1 className="relative text-white text-xl mt-4">
         <Typewriter
           options={{
             strings: [
@@ -76,10 +52,12 @@ const downloadCv = () => {
           }}
         />
       </motion.h1>
-      <button className="download-cv-button mt-4 rounded-xl " onClick={downloadCv}>
-        Download CV
+      <button
+        className="download-cv-button mt-4 rounded-xl"
+        onClick={downloadCv}
+      >
+        View CV
       </button>
-      {cv && <div className="mt-3 bg-red-600 text-red-200 p-4 m-auto d-flex items-center justify-center rounded-md">Try after some time</div>}
     </section>
   );
 };

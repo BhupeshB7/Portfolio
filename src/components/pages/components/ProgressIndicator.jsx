@@ -3,6 +3,8 @@ import { getProjects } from "../../../util/http";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { FaEye, FaCode } from "react-icons/fa";
+import { motion, useInView, useAnimation } from "framer-motion";
+import { ImageComponent } from "./ImageComponent";
 const ProgressIndicator = () => {
   const {
     data: projects,
@@ -32,6 +34,7 @@ const ProgressIndicator = () => {
 
   const maxScroll = document.body.scrollHeight - window.innerHeight;
   const scrollPercent = Math.min(100, (scrollY / maxScroll) * 120); // Clamp to 100%
+  // Animate the image
 
   let content;
   if (isLoading) {
@@ -81,14 +84,22 @@ const ProgressIndicator = () => {
             </div>
 
             {/* Image */}
-            <div className="flex justify-center items-center w-full md:w-1/2 mb-4 md:mb-0">
-              <img
+            {/* <div className="flex justify-center items-center w-full md:w-1/2 mb-4 md:mb-0">
+              <motion.img
+                initial={{ opacity: 0,y:-30,scale:1.4 }}
+                animate={{ opacity: 1,y:0,scale:1 }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeInOut",
+                  times: [0, 0.2, 0.5, 0.8, 1],
+                }}
+                whileInView={{scale: 1}}
                 src={project.img}
                 alt={project.title}
                 className="w-[300px] h-auto project-image"
               />
-            </div>
-
+            </div> */}
+            <ImageComponent src={project.img} alt={project.title} width={"300px"} height={"auto"} widthImg="1/2" className="project-image"/>
             {/* Text */}
             <div className="flex justify-center items-center w-full md:w-1/2 pl-0 md:pl-8 md:m-5">
               <div className="text-center relative order-1 md:order-1 md:m-4 md:p-5">
