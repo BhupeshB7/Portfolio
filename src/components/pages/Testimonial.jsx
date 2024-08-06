@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-// Testimonial data
 const testimonials = [
   {
     id: 1,
@@ -53,13 +52,11 @@ const testimonials = [
   },
 ];
 
-// Duplicate the testimonials array
 const extendedTestimonials = [...testimonials, ...testimonials];
 
-// Scroll animation variants
-const scrollVariants = {
+const scrollVariantsLeft = {
   animate: {
-    x: ["0%", "-100%"], // Adjust to match the length of the extended testimonials
+    x: ["0%", "-100%"], 
     transition: {
       duration: 50,
       ease: "linear",
@@ -70,7 +67,7 @@ const scrollVariants = {
 
 const scrollVariantsRight = {
   animate: {
-    x: ["-50%", "0%"], // Adjust to match the length of the extended testimonials
+    x: ["-50%", "0%"],
     transition: {
       duration: 20,
       ease: "linear",
@@ -79,7 +76,6 @@ const scrollVariantsRight = {
   },
 };
 
-// Testimonial item component
 const TestimonialItem = ({ testimonial, onMouseEnter, onMouseLeave }) => (
   <div
     className="flex-none w-[500px] border-2 border-gray-800 rounded-lg shadow-lg p-4"
@@ -130,7 +126,7 @@ const Testimonial = () => {
       <div className="relative overflow-hidden">
         <motion.div
           className="flex space-x-4"
-          variants={scrollVariants}
+          variants={scrollVariantsLeft}
           animate={isPaused ? "paused" : "animate"}
         >
           {extendedTestimonials.map((testimonial, index) => (
