@@ -3,8 +3,8 @@ import { getProjects } from "../../../util/http";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { FaEye, FaCode } from "react-icons/fa";
-import { motion, useInView, useAnimation } from "framer-motion";
 import { ImageComponent } from "./ImageComponent";
+import ProjectDetail from "./ProjectDetail";
 const ProgressIndicator = () => {
   const {
     data: projects,
@@ -34,7 +34,6 @@ const ProgressIndicator = () => {
 
   const maxScroll = document.body.scrollHeight - window.innerHeight;
   const scrollPercent = Math.min(100, (scrollY / maxScroll) * 120); // Clamp to 100%
-  // Animate the image
 
   let content;
   if (isLoading) {
@@ -99,25 +98,34 @@ const ProgressIndicator = () => {
                 className="w-[300px] h-auto project-image"
               />
             </div> */}
-            <ImageComponent src={project.img} alt={project.title} width={"300px"} height={"auto"} widthImg="1/2" className="project-image"/>
+            <ImageComponent
+              src={project.img}
+              alt={project.title}
+              width={"300px"}
+              height={"auto"}
+              widthImg="1/2"
+              className="project-image"
+            />
             {/* Text */}
             <div className="flex justify-center items-center w-full md:w-1/2 pl-0 md:pl-8 md:m-5">
               <div className="text-center relative order-1 md:order-1 md:m-4 md:p-5">
                 <h2 className="text-xl font-bold mb-2">{project.title}</h2>
                 <p className="text-gray-400">{project.technology}</p>
-                <div className="flex justify-center space-x-4">
+                <div className="flex justify-center space-x-4 mt-2">
                   <Link to={project.link}>
                     <FaEye
                       className="text-gray-200 hover:text-gray-50 bg-gray-700 hover:bg-gray-800 rounded-full p-2 w-8 h-8"
                       size={24}
                     />
                   </Link>
-                  <Link to={project.code.backend}>
-                    <FaCode
-                      className="text-gray-200 hover:text-gray-50 bg-gray-700 hover:bg-gray-800 rounded-full p-2 w-8 h-8"
-                      size={24}
-                    />
-                  </Link>
+                  {project.code.backend && (
+                    <Link to={project.code.backend}>
+                      <FaCode
+                        className="text-gray-200 hover:text-gray-50 bg-gray-700 hover:bg-gray-800 rounded-full p-2 w-8 h-8"
+                        size={24}
+                      />
+                    </Link>
+                  )}
                   <Link to={project.code.frontend}>
                     <FaCode
                       className="text-gray-200 hover:text-gray-50 bg-gray-700 hover:bg-gray-800 rounded-full p-2 w-8 h-8"
@@ -125,6 +133,9 @@ const ProgressIndicator = () => {
                     />
                   </Link>
                 </div>
+                {/* <h3 className="text-xl font-bold mb-2">{project.description}</h3> */}
+                <br />
+                <ProjectDetail project={project} />
               </div>
             </div>
           </div>
