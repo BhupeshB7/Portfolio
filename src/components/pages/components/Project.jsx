@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { FaEye, FaCode } from "react-icons/fa";
 import { ImageComponent } from "./ImageComponent";
 import ProjectDetail from "./ProjectDetail";
-const ProgressIndicator = () => {
+import ProjectSkeleton from "./ProjectSkeleton";
+const Project = () => {
   const {
     data: projects,
     isError,
@@ -37,7 +38,7 @@ const ProgressIndicator = () => {
 
   let content;
   if (isLoading) {
-    content = <div>Loading...</div>;
+    content = <ProjectSkeleton/>;
   } else if (isError) {
     content = (
       <div className="bg-red-800 text-red-100 p-3 w-[300px]">
@@ -157,4 +158,4 @@ const ProgressIndicator = () => {
   );
 };
 
-export default ProgressIndicator;
+export default Project;

@@ -6,7 +6,9 @@ import R from "../../assets/R.png";
 import N from "../../assets/N.png";
 import { motion } from "framer-motion";
 import { IoIosCloseCircle } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 const About = () => {
+  const navigate = useNavigate();
   React.useEffect(() => {
     document.querySelector('meta[name=theme-color]').setAttribute('content', '#020c17');
   }, []);
@@ -26,6 +28,7 @@ const About = () => {
     "tailwind",
     "Linux",
   ];
+  
   const mern = [
     { name: "M", icon: M, color: "#57B55D" },
     { name: "E", icon: E, color: "#FFFFFF" },
@@ -57,7 +60,7 @@ const About = () => {
         <div className="about-icon">
           <IoIosCloseCircle
             className="close_icon"
-            onClick={() => (window.location.href = "/")}
+            onClick={() => (navigate("/"))}
           />
         </div>
         <h5 className="text-center text-[#80DEEA] text-2xl pt-3 ">About me</h5>

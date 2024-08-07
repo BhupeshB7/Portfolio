@@ -1,20 +1,23 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import Header from "./Header";
 import Background from "./Background";
-import Work from "./pages/Work";
-import Footer from "./Footer/Footer";
-import ContactForm from "./contact/ContactForm";
-import Testimonial from "./pages/Testimonial";
-
+// Lazy load the components
+const Work = lazy(() => import("./pages/Work"));
+const Footer = lazy(() => import("./Footer/Footer"));
+const ContactForm = lazy(() => import("./contact/ContactForm"));
+const Testimonial = lazy(() => import("./pages/Testimonial"));
 export const Home = () => {
   return (
     <>
       <Header />
+
       <Background />
-      <Work />
-      <Testimonial />
-      <ContactForm/>
-      <Footer />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Work />
+        <Testimonial />
+        <ContactForm />
+        <Footer />
+      </Suspense>
     </>
   );
 };

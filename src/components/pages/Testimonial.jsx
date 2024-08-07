@@ -56,7 +56,7 @@ const extendedTestimonials = [...testimonials, ...testimonials];
 
 const scrollVariantsLeft = {
   animate: {
-    x: ["0%", "-100%"], 
+    x: ["0%", "-300%"], 
     transition: {
       duration: 50,
       ease: "linear",
@@ -67,7 +67,7 @@ const scrollVariantsLeft = {
 
 const scrollVariantsRight = {
   animate: {
-    x: ["-50%", "0%"],
+    x: ["-200%", "0%"],
     transition: {
       duration: 20,
       ease: "linear",
