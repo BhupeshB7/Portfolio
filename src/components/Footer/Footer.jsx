@@ -58,10 +58,10 @@ const Footer = () => {
           <div>
             <h6 className="text-white text-lg mb-2">Contact Us</h6>
             <p className="text-gray-400 text-sm">
-              Email: support@gmail.com
+              Email: bhupeshkr2912@gmail.com
             </p>
             <p className="text-gray-400 text-sm">
-              Phone: <a href="tel:+1234567890" className="text-gray-400">+123 456 7890</a>
+              Phone: <a href="tel:+918581869783" className="text-gray-400">+191 85818 69783</a>
             </p>
             <div className="flex mt-4 space-x-4">
               {footerIcons.map((item, index) => (
